@@ -1,20 +1,22 @@
-function agendarConsulta() {
-    const nome = document.getElementById('nome').value;
-    const email = document.getElementById('email').value;
-    const data = document.getElementById('data').value;
-    const hora = document.getElementById('hora').value;
+// script.js
 
-    if (nome && email && data && hora) {
-        const resultadoDiv = document.getElementById('resultado');
-        resultadoDiv.innerHTML = `
-            <h3>Consulta Agendada com Sucesso!</h3>
-            <p><strong>Nome:</strong> ${nome}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Data:</strong> ${data}</p>
-            <p><strong>Hora:</strong> ${hora}</p>
-        `;
-        document.getElementById('agendamentoForm').reset(); // Limpa o formulário após o agendamento
+function toggleForm() {
+    var formContainer = document.getElementById('form-container');
+    if (formContainer.classList.contains('hidden')) {
+        formContainer.classList.remove('hidden');
     } else {
-        alert("Por favor, preencha todos os campos.");
+        formContainer.classList.add('hidden');
     }
 }
+
+function showConfirmation() {
+    // Exibe uma mensagem de confirmação e oculta o formulário
+    alert("Consulta Agendada!");
+    document.getElementById('form-container').classList.add('hidden');
+}
+
+// Adiciona um listener de evento ao formulário
+document.querySelector('form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Impede o envio real do formulário
+    showConfirmation();
+});
